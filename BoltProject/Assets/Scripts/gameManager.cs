@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     private bool isRoundOver;
 
     private int timer;
+    private int roundNum;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class gameManager : MonoBehaviour
         points = 0;
         isRoundOver = false;
         timer = 4;
+        roundNum = 0; 
 
         StartCoroutine(tickTimer());
     }
@@ -38,6 +40,10 @@ public class gameManager : MonoBehaviour
             isRoundOver = true;
             timer = 0;
         }
+    }
+
+    public int getRound() {
+        return roundNum;
     }
 
     private IEnumerator gameOver() {

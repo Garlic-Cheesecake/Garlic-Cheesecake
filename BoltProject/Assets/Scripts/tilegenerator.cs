@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class tilegenerator : MonoBehaviour
 {
     [SerializeField]private tile[] tiles = new tile[4];
+    [SerializeField]private GameObject roundText;
+    [SerializeField]private GameObject questionText;
     public gameManager gm;
 
-    private string[] questionText = new string[5];
-    private string[] attributes = new string[20];
+    private List<string> questionTextList;
+    private List<string> attributesList;
     private int[] a = new int[4];
 
     public bool[] selectedTiles = new bool[2];
@@ -45,13 +48,15 @@ public class tilegenerator : MonoBehaviour
         tiles[2].pressKey = KeyCode.D;
         tiles[3].pressKey = KeyCode.F;
 
-        readFromFile();
-
         i = 0;
 
         foreach(tile t in tiles) {
             Debug.Log(t.isCorrectAnswer());
         }
+
+        readFromFile();
+        generateTiles();
+
     }
 
     // Update is called once per frame
@@ -73,15 +78,21 @@ public class tilegenerator : MonoBehaviour
         int lineNumber = 0;
         int k = 0;
         int l = 0;
-        foreach (string line in lines){
+        foreach(string line in lines){
             if (lineNumber % 5 == 0){
-                questionText[k++] = line;
+                questionTextList.Add(line);
             }
             else{
-                attributes[l++] = line;
+                attributesList.Add(line);
             }
             lineNumber++;
         }
+    }
+
+    void generateTiles() {
+        roundText.GetComponent<TextMeshPro>().text = "Round " + (gm.getRound()+1);
+
+        questionText
     }
 
     public void upCount() {
