@@ -1,31 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class tilegenerator : MonoBehaviour
 {
-    public tile[] tiles = new tile[8];
+    [SerializeField]private tile[] tiles = new tile[4];
+
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         tiles[0].pressKey = KeyCode.A;
         tiles[1].pressKey = KeyCode.S;
         tiles[2].pressKey = KeyCode.D;
         tiles[3].pressKey = KeyCode.F;
-        tiles[4].pressKey = KeyCode.J;
-        tiles[5].pressKey = KeyCode.K;
-        tiles[6].pressKey = KeyCode.L;
-        tiles[7].pressKey = KeyCode.Semicolon;
+
+        readFromFile();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void generateTiles() {
+        
+    }
 
+    void readFromFile() {
+        string filePath = "Assets/Files/input.txt";
+        
+        if(File.Exists(filePath)) {
+            StreamReader reader = new StreamReader(filePath);
+
+            string line = reader.ReadLine();
+            int t = 0;
+            // while(line != null) {
+            //     tiles[t++].updateText(line);
+                
+            // }
+        }
+        else {
+            Debug.Log("FILE PATH ERROR");
+        }
     }
 }

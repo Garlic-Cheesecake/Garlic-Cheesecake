@@ -6,10 +6,11 @@ using UnityEngine.Tilemaps;
 
 public class tile : MonoBehaviour
 {
-    public String attributeText;
+    [SerializeField]private String attributeText;
     public KeyCode pressKey;
 
     private bool isSelected;
+    private bool isCorrect;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,19 @@ public class tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isSelected) {
+            checkInput();
+        }
+    }
+
+    public void updateText(string text) {
+        this.attributeText = text;
+    }
+
+    public void checkInput() {
+        if(Input.GetKey(pressKey)) {
+            isSelected = true;
+            Debug.Log("KeyPressed");
+        }
     }
 }
