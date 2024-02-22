@@ -39,6 +39,7 @@ public class tilegenerator : MonoBehaviour
         attributes[3] = "Fourth attribute";
 
         i = 0;
+
         foreach(tile t in tiles) {
             t.updateText(attributes[b[i]]);
             if(i == 0 || i == 1) {
@@ -46,8 +47,6 @@ public class tilegenerator : MonoBehaviour
             }
             i++;
         }
-
-        readFromFile();
     }
 
     // Update is called once per frame
@@ -67,7 +66,6 @@ public class tilegenerator : MonoBehaviour
             StreamReader reader = new StreamReader(filePath);
 
             string line = reader.ReadLine();
-            int t = 0;
             // while(line != null) {
             //     tiles[t++].updateText(line);
                 

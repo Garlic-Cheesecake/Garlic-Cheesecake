@@ -10,7 +10,7 @@ public class tile : MonoBehaviour
     public KeyCode pressKey;
 
     private bool isSelected;
-    private bool isCorrect;
+    [SerializeField]private bool isCorrect;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,10 @@ public class tile : MonoBehaviour
 
     public void updateText(string text) {
         this.attributeText = text;
+    }
+
+    public void setCorrect(bool c) {
+        isCorrect = c;
     }
 
     public void checkInput() {
