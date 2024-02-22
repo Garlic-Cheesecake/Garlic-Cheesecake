@@ -7,10 +7,16 @@ using UnityEngine;
 public class tilegenerator : MonoBehaviour
 {
     [SerializeField]private tile[] tiles = new tile[4];
+    public gameManager gm;
 
     private string[] questionText = new string[5];
     private string[] attributes = new string[20];
     private int[] a = new int[4];
+
+    public bool[] selectedTiles = new bool[2];
+
+    private int selectCount = 0;
+    string filePath = "Assets/Files/input.txt";
 
 
     // Start is called before the first frame update
@@ -26,6 +32,11 @@ public class tilegenerator : MonoBehaviour
         i = 0;
         while(i < 4) {
             Debug.Log(b[i]);
+
+            if(b[i] == 0 || b[i] == 1) {
+                tiles[i].setCorrect(true);
+            }
+
             i++;
         }
 
@@ -34,44 +45,50 @@ public class tilegenerator : MonoBehaviour
         tiles[2].pressKey = KeyCode.D;
         tiles[3].pressKey = KeyCode.F;
 
-        attributes[0] = "First attribute";
-        attributes[1] = "Second attribute";
-        attributes[2] = "Third attribute";
-        attributes[3] = "Fourth attribute";
+        readFromFile();
 
         i = 0;
 
         foreach(tile t in tiles) {
-            t.updateText(attributes[b[i]]);
-            if(i == 0 || i == 1) {
-                t.setCorrect(true);
-            }
-            i++;
+            Debug.Log(t.isCorrectAnswer());
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    void generateTiles() {
-        
+        if(selectCount == 2) {
+            if(selectedTiles[0] && selectedTiles[1]) {
+                // add point
+                gm.addPoint();
+            }
+        }
     }
 
     void readFromFile() {
-        string filePath = "Assets/Files/input.txt";
-        
-        if(File.Exists(filePath)) {
-            StreamReader reader = new StreamReader(filePath);
+        // Read the file line by line
+        string[] lines = File.ReadAllLines(filePath);
 
-            string line = reader.ReadLine();
-
-
+        // Process each line
+        int lineNumber = 0;
+        int k = 0;
+        int l = 0;
+        foreach (string line in lines){
+            if (lineNumber % 5 == 0){
+                questionText[k++] = line;
+            }
+            else{
+                attributes[l++] = line;
+            }
+            lineNumber++;
         }
-        else {
-            Debug.Log("FILE PATH ERROR");
-        }
+    }
+
+    public void upCount() {
+        selectCount++;
+    }
+
+    public int getCount() {
+        return selectCount;
     }
 }

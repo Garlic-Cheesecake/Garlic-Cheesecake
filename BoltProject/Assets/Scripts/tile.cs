@@ -8,6 +8,9 @@ public class tile : MonoBehaviour
 {
     [SerializeField]private String attributeText;
     [SerializeField]public KeyCode pressKey;
+    [SerializeField]private GameObject greenBG;
+
+    private tilegenerator tilegen;
 
     [SerializeField]private bool isSelected;
     [SerializeField]private bool isCorrect;
@@ -16,6 +19,8 @@ public class tile : MonoBehaviour
     void Start()
     {
         isSelected = false;
+
+        tilegen = GetComponentInParent<tilegenerator>();
     }
 
     // Update is called once per frame
@@ -35,9 +40,16 @@ public class tile : MonoBehaviour
     }
 
     public void checkInput() {
-        if(Input.GetKey(pressKey)) {
+        if(Input.GetKey(pressKey) && gameObject.GetComponentInParent<tilegenerator>().getCount() < 2) {
             isSelected = true;
-            Debug.Log("KeyPressed");
+            greenBG.SetActive(true);
+            tilegen.selectedTiles[tilegen.getCount()] = isCorrect;
+            tilegen.upCount();
+            
         }
+    }
+
+    public bool isCorrectAnswer() {
+        return isCorrect;
     }
 }
