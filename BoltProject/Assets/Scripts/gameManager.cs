@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
-    [SerializeField]private int points;
+    [SerializeField]public static int points;
 
     [SerializeField]private tilegenerator tilegen;
     [SerializeField]private GameObject pointsText;
     [SerializeField]private GameObject timerText;
 
+    private bool isPoint;
     private bool isRoundOver;
 
     private int timer;
@@ -21,9 +23,9 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         points = 0;
-        isRoundOver = false;
+        isPoint = false;
         timer = 4;
-        roundNum = 0; 
+        roundNum = 0;
 
         StartCoroutine(tickTimer());
     }
@@ -33,10 +35,15 @@ public class gameManager : MonoBehaviour
     {
         pointsText.GetComponent<TextMeshPro>().text = "POINTS: " + points;
         timerText.GetComponent<TextMeshPro>().text = "CLOCK\n" + timer;
+
+        if(isRoundOver) {
+            roundOver();
+            isRoundOver = false;
+        }
     }
 
     public void addPoint() {
-        if(!isRoundOver) {
+        if(!isPoint) {
             points++;
             isRoundOver = true;
             
@@ -58,11 +65,18 @@ public class gameManager : MonoBehaviour
 
     public void roundOver() {
         roundNum++;
-        isRoundOver = false;
-        timer = 5;
-        tilegen.resetTiles();
-        tilegen.callTileGeneration();
-        StartCoroutine(tickTimer());
+
+        if(roundNum >= maxRounds) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        else {
+            isRoundOver = false;
+            timer = 5;
+            tilegen.resetTiles();
+            tilegen.callTileGeneration();
+            StartCoroutine(tickTimer());
+        }
     }
 
     private IEnumerator tickTimer() {
@@ -71,7 +85,7 @@ public class gameManager : MonoBehaviour
             timer -= 1;
         }
 
-        roundOver();
+        isRoundOver = true;
     }
 
     public void setMaxRounds(int k) {
@@ -80,5 +94,9 @@ public class gameManager : MonoBehaviour
 
     public void stopTicking() {
         StopAllCoroutines();
+    }
+
+    public void setRoundOver() {
+        isRoundOver = true;
     }
 }

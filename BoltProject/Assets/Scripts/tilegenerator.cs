@@ -23,7 +23,7 @@ public class tilegenerator : MonoBehaviour
     private int attributeListCount = 0;
     private bool f = false;
     
-    string filePath = "Assets/Files/input.txt";
+    string filePath = "input.txt";
 
 
 
@@ -62,6 +62,7 @@ public class tilegenerator : MonoBehaviour
                 gm.stopTicking();
                 StartCoroutine(roundPause());
                 if(f) {
+                    StopAllCoroutines();
                     gm.addPoint();
                     f = false;
                 }
@@ -71,7 +72,8 @@ public class tilegenerator : MonoBehaviour
                 gm.stopTicking();
                 StartCoroutine(roundPause());
                 if(f) {
-                    gm.roundOver();
+                    StopAllCoroutines();
+                    gm.setRoundOver();
                     f = false;
                 }
             }
