@@ -7,9 +7,9 @@ using UnityEngine.Tilemaps;
 public class tile : MonoBehaviour
 {
     [SerializeField]private String attributeText;
-    public KeyCode pressKey;
+    [SerializeField]public KeyCode pressKey;
 
-    private bool isSelected;
+    [SerializeField]private bool isSelected;
     [SerializeField]private bool isCorrect;
 
     // Start is called before the first frame update
