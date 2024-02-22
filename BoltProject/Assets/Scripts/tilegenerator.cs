@@ -8,7 +8,8 @@ public class tilegenerator : MonoBehaviour
 {
     [SerializeField]private tile[] tiles = new tile[4];
 
-    private string[] attributes = new string[4];
+    private string[] questionText = new string[5];
+    private string[] attributes = new string[20];
     private int[] a = new int[4];
 
 
@@ -66,10 +67,8 @@ public class tilegenerator : MonoBehaviour
             StreamReader reader = new StreamReader(filePath);
 
             string line = reader.ReadLine();
-            // while(line != null) {
-            //     tiles[t++].updateText(line);
-                
-            // }
+
+
         }
         else {
             Debug.Log("FILE PATH ERROR");
