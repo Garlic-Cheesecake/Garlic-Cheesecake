@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class tile : MonoBehaviour
 {
-    [SerializeField]private String attributeText;
+    [SerializeField]private GameObject attributeText;
     [SerializeField]public KeyCode pressKey;
     [SerializeField]private GameObject greenBG;
 
-    private tilegenerator tilegen;
+    [SerializeField]private tilegenerator tilegen;
 
     [SerializeField]private bool isSelected;
     [SerializeField]private bool isCorrect;
@@ -32,7 +33,7 @@ public class tile : MonoBehaviour
     }
 
     public void updateText(string text) {
-        this.attributeText = text;
+        attributeText.GetComponent<TextMeshPro>().text = text;
     }
 
     public void setCorrect(bool c) {
@@ -40,16 +41,22 @@ public class tile : MonoBehaviour
     }
 
     public void checkInput() {
-        if(Input.GetKey(pressKey) && gameObject.GetComponentInParent<tilegenerator>().getCount() < 2) {
+        Debug.Log(tilegen.getCount());
+        if(Input.GetKey(pressKey) && tilegen.getCount() < 2) {
             isSelected = true;
             greenBG.SetActive(true);
             tilegen.selectedTiles[tilegen.getCount()] = isCorrect;
             tilegen.upCount();
-            
         }
     }
 
     public bool isCorrectAnswer() {
         return isCorrect;
+    }
+
+    public void resetTile() {
+        greenBG.SetActive(false);
+        isSelected = false;
+        isCorrect = false;
     }
 }

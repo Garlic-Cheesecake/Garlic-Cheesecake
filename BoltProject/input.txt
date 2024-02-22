@@ -1,0 +1,27 @@
+Which of the following are types of rock formations?(b,c)
+Sedimentary
+Igneous
+Windy
+Metamorphic
+Which of the following are types of chemical bonds?(b,d)
+Covalent
+Ionic
+Magnetic
+Metallic
+Which of the following are greenhouse gases?(a,c)
+Carbon Dioxide
+Methane
+Oxygen
+Nitrogen
+Which of the following describes DNA(b,c)
+Sequence, Genetic Code
+Ribosome, Chromosome
+Enzyme, Transcription
+Molecule, Nucleus
+Which of the following describes Thermodynamics(a,d)
+Heat, Work
+Energy, System
+color, conductivity
+flexibility,malleability
+
+

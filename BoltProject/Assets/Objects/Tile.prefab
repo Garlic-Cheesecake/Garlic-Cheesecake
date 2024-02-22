@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a89b34ff0221d4487f716fae6e3354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributeText: 
+  attributeText: {fileID: 8515205081321953069}
   pressKey: 0
   greenBG: {fileID: 2354288082244038656}
   isSelected: 0

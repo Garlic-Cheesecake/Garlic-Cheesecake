@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
 
     private int timer;
     private int roundNum;
+    private int maxRounds;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,8 @@ public class gameManager : MonoBehaviour
         if(!isRoundOver) {
             points++;
             isRoundOver = true;
-            timer = 0;
+            
+            roundOver();
         }
     }
 
@@ -52,8 +54,15 @@ public class gameManager : MonoBehaviour
 
         // nextRound
         Application.Quit();
+    }
 
-        // if roundNum is 5, show exit screen
+    public void roundOver() {
+        roundNum++;
+        isRoundOver = false;
+        timer = 5;
+        tilegen.resetTiles();
+        tilegen.callTileGeneration();
+        StartCoroutine(tickTimer());
     }
 
     private IEnumerator tickTimer() {
@@ -62,6 +71,14 @@ public class gameManager : MonoBehaviour
             timer -= 1;
         }
 
-        StartCoroutine(gameOver());
+        roundOver();
+    }
+
+    public void setMaxRounds(int k) {
+        maxRounds = k;
+    }
+
+    public void stopTicking() {
+        StopAllCoroutines();
     }
 }
