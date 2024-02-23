@@ -23,13 +23,17 @@ public class tilegenerator : MonoBehaviour
     private int attributeListCount = 0;
     private bool f = false;
     
-    string filePath = "input.txt";
+    string filePath;
 
 
 
     // Start is called before the first frame update
     void Start()
     {   
+        filePath = "Assets/Files/" + gameManager.gameMode + ".txt";
+
+        Debug.Log(gameManager.gameMode);
+
         int i = 0;
         while(i < 4) {
             a[i] = i;
@@ -128,7 +132,7 @@ public class tilegenerator : MonoBehaviour
         questionText.GetComponent<TextMeshPro>().text = questionTextList[gm.getRound()];
 
         for(i = 0; i < 4; i++) {
-            Debug.Log(attributesList[attributeListCount+b[i]]);
+            // Debug.Log(attributesList[attributeListCount+b[i]]);
             tiles[i].GetComponent<tile>().updateText(attributesList[attributeListCount+b[i]]);
         }
         attributeListCount += 4;

@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
-    [SerializeField]public static int points;
+    public static int points;
+
+    public static string gameMode;
 
     [SerializeField]private tilegenerator tilegen;
     [SerializeField]private GameObject pointsText;
@@ -22,6 +24,8 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>().Play();
+
         points = 0;
         isPoint = false;
         timer = 4;

@@ -41,7 +41,7 @@ public class tile : MonoBehaviour
     }
 
     public void checkInput() {
-        Debug.Log(tilegen.getCount());
+        // Debug.Log(tilegen.getCount());
         if(Input.GetKey(pressKey) && tilegen.getCount() < 2) {
             isSelected = true;
             greenBG.SetActive(true);
