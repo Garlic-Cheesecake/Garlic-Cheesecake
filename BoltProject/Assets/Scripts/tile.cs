@@ -9,7 +9,7 @@ public class tile : MonoBehaviour
 {
     [SerializeField]private GameObject attributeText;
     [SerializeField]public KeyCode pressKey;
-    [SerializeField]private GameObject greenBG;
+    [SerializeField]private GameObject greenBG; 
 
     [SerializeField]private tilegenerator tilegen;
 
@@ -42,9 +42,10 @@ public class tile : MonoBehaviour
 
     public void checkInput() {
         // Debug.Log(tilegen.getCount());
-        if(Input.GetKey(pressKey) && tilegen.getCount() < 2) {
+        if(Input.GetKey(pressKey) && tilegen.getCount() < tilegen.getMaxCount() && !tilegen.getInputFlag()) {
             isSelected = true;
             greenBG.SetActive(true);
+            Debug.Log(tilegen.getCount());
             tilegen.selectedTiles[tilegen.getCount()] = isCorrect;
             tilegen.upCount();
         }

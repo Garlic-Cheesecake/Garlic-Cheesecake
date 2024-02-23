@@ -155,7 +155,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -1556,6 +1556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 2125806378}
   nextTitlePos: {fileID: 342125122}
+  music: {fileID: 309208793}
   playB: {fileID: 668854147}
   sixB: {fileID: 1574074683}
   sevenB: {fileID: 1936502454}

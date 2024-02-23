@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class tilegenerator : MonoBehaviour
@@ -12,16 +13,18 @@ public class tilegenerator : MonoBehaviour
     [SerializeField]private GameObject questionText;
     public gameManager gm;
 
-    private string[] questionTextList = new string[5];
-    private string[] attributesList = new string[20];
+    private string[] questionTextList = new string[15];
+    private int[] questionType = new int[15];
+    private string[] attributesList = new string[60];
     private int[] a = new int[4];
     private int[] b = new int[4];
 
-    public bool[] selectedTiles = new bool[2];
+    public bool[] selectedTiles = new bool[4];
 
     private int selectCount = 0;
     private int attributeListCount = 0;
     private bool f = false;
+    private bool noInput = false;
     
     string filePath;
 
@@ -32,7 +35,7 @@ public class tilegenerator : MonoBehaviour
     {   
         filePath = "Assets/Files/" + gameManager.gameMode + ".txt";
 
-        Debug.Log(gameManager.gameMode);
+        // Debug.Log(gameManager.gameMode);
 
         int i = 0;
         while(i < 4) {
@@ -60,25 +63,38 @@ public class tilegenerator : MonoBehaviour
     void Update()
     {
         
-        if(selectCount == 2) {
-            if(selectedTiles[0] && selectedTiles[1]) {
+        if(selectCount == getMaxCount()) {
+            bool b = true;
+
+            for(int i = 0; i < getMaxCount(); i++) {
+                if(!selectedTiles[i]) {
+                    b = false;
+                    break;
+                }
+            }
+
+            if(b) {
                 // add point
                 gm.stopTicking();
                 StartCoroutine(roundPause());
+                noInput = true;
                 if(f) {
                     StopAllCoroutines();
                     gm.addPoint();
                     f = false;
+                    noInput = false;
                 }
             }
 
             else {
                 gm.stopTicking();
                 StartCoroutine(roundPause());
+                noInput = true;
                 if(f) {
                     StopAllCoroutines();
                     gm.setRoundOver();
                     f = false;
+                    noInput = false;
                 }
             }
         }
@@ -100,6 +116,8 @@ public class tilegenerator : MonoBehaviour
 
         while((line = reader.ReadLine()) != null) {
             questionTextList[k] = line;
+            questionType[k] = reader.ReadLine()[0] - 48;
+            Debug.Log(questionType[k]);
 
             int i = 0;
             while(i < 4) {
@@ -115,13 +133,18 @@ public class tilegenerator : MonoBehaviour
     }
 
     private void generateTiles() {
-        b =  a.OrderBy(x => Random.value).ToArray();
+        b =  a.OrderBy(x => UnityEngine.Random.value).ToArray();
         int i = 0;
         while(i < 4) {
             // Debug.Log(b[i]);
 
-            if(b[i] == 0 || b[i] == 1) {
-                tiles[i].GetComponent<tile>().setCorrect(true);
+            for(int j = 0; j < questionType[gm.getRound()]; j++) {
+                int temp = 0;
+                for(int k = 0; k < 4; k++) {
+                    if(b[k] == temp++) {
+                        tiles[b[k]].GetComponent<tile>().setCorrect(true);
+                    }
+                }
             }
 
             i++;
@@ -135,6 +158,7 @@ public class tilegenerator : MonoBehaviour
             // Debug.Log(attributesList[attributeListCount+b[i]]);
             tiles[i].GetComponent<tile>().updateText(attributesList[attributeListCount+b[i]]);
         }
+        
         attributeListCount += 4;
     }
 
@@ -156,5 +180,13 @@ public class tilegenerator : MonoBehaviour
         }
 
         selectCount = 0;
+    }
+
+    public int getMaxCount() {
+        return questionType[gm.getRound()];
+    }
+
+    public bool getInputFlag() {
+        return noInput;
     }
 }
