@@ -1,0 +1,59 @@
+1. What does a program consist of?
+a) A list of data
+b) A list of instructions to perform a task
+c) Random memory sequences
+d) None of the above
+
+2. What is the function of the Instruction Register (IR)?
+a) It holds the instruction that is currently being executed
+b) It generates timing signals
+c) It contains memory address of next instruction
+d) It holds the address of the location to be accessed
+
+3. What is the function of the Program Counter (PC)?
+a) It holds the instruction that is currently being executed
+b) It generates timing signals
+c) It contains memory address of next instruction
+d) It holds the address of the location to be accessed
+
+4. What happens when an operand has been read from memory into Memory Data Register (MDR)?
+a) It is transferred to the processor
+b) It is transferred to the ALU
+c) It is transferred to the MAR
+d) None of the above
+
+5. Which of the following steps are necessary for the execution of an instruction?
+a) Fetching the instruction from memory
+b) Decoding the instruction
+c) Executing the instruction
+d) All of the above
+
+6. What is an interrupt in the context of processor operations?
+a) A request from an I/O device for service by the processor
+b) A malfunction in the processor
+c) A pause in the execution of a program
+d) A temporary stop of a program
+
+7. Which register contains the data to be written into or read out of the addressed location?
+a) Instruction Register (IR)
+b) Memory Address Register (MAR)
+c) Memory Data Register (MDR)
+d) Program Counter (PC)
+
+8. What happens when an instruction involves an operation to be performed by the ALU?
+a) The required operands are obtained
+b) The instruction is decoded
+c) The instruction is executed
+d) All of the above
+
+9. What are the steps involved in moving data between memory and the processor?
+a) Transferring contents of PC to MAR
+b) Reading instruction out of memory and loading into MDR
+c) Transferring contents of MDR to IR
+d) All of the above
+
+10. What is the function of the control circuits?
+a) To hold the instruction that is currently being executed
+b) To generate timing signals
+c) To keep track of the execution of a program
+d) To hold the address of the location to be accessed

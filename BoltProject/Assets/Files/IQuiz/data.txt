@@ -1,0 +1,107 @@
+BASIC OPERATIONAL 
+CONCEPTS
+Dr.S.Meenatchi, SCORE, VIT, Vellore.BASIC OPERATIONAL CONCEPTS
+•Program:
+•Consists of a list of instructions to perform a given task.
+•It is stored in memory . 
+•Individual instructions are brought from memory into processor .
+•Processor executes the specified operations. 
+•Data to be used as operands are also stored in memory .
+Dr.S.Meenatchi, SCORE, VIT, Vellore.BASIC OPERATIONAL CONCEPTS CONT..
+•Example instruction:
+•Add LOCA, RO // RO = [LOCA] + [RO]
+•Steps required to execute a instruction:
+1.Instruction is fetched from memory into processor. 
+2.Operand at memory location LOCA is fetched and added to contents 
+of RO . 
+3.Resulting sum is stored in register RO.
+•This Add instruction combines a memory access operation with an ALU 
+operation. 
+•Original contents oflocation LOCA are preserved .
+•RO are overwritten .
+Dr.S.Meenatchi, SCORE, VIT, Vellore.BASIC OPERATIONAL CONCEPTS CONT..
+•In many modern computers , memory access operation and ALU operation are 
+performed by separate instructions for performance reasons. 
+•Example:
+•Load LOCA, R1 // transfers contents of LOCA into R1
+•Add R1, RO // adds R1 and RO and places sum into RO
+•It destroys the former contents of R1 and RO , whereas original contents of 
+LOCA are preserved.
+Dr.S.Meenatchi, SCORE, VIT, Vellore.Connection Between Processor and Memory
+•Processor contains a number of registers 
+used for several different purposes . 
+1.Instruction register (IR) 
+2.Program counter (PC) 
+3.Memory address register (MAR)
+4.Memory data register (MDR)
+5.General -purpose register (R0 –Rn-1)
+Figure 1.2.   Connections between the processor and the  memory.ProcessorMemory
+PC
+IRMDR
+Control
+ALU
+Rn1-R1R0MAR
+n general purpose
+registers
+Dr.S.Meenatchi, SCORE, VIT, Vellore.Connection Between Processor and Memory Cont..
+•Instruction register (IR) 
+•Holds instruction that is currently being executed . 
+•Its output is available to control circuits .
+•Control circuits
+•It generates timing signals that control the various processing 
+elements involved in executing the instruction. 
+•Program counter (PC) 
+•It is another specialized register . 
+•It keeps track of the execution of a program . 
+•It contains memory address of next instruction to be fetched and 
+executed. 
+•During execution of an instruction, contents of PC are updated .Dr.S.Meenatchi, SCORE, VIT, Vellore.Connection Between Processor and Memory Cont..
+•Finally, two registers facilitate communication with the memory. 
+•Memory address register (MAR) 
+•Holds the address of the location to be accessed. 
+•Memory data register (MDR)
+•Contains the data to be written into or read out of the addressed location .
+Dr.S.Meenatchi, SCORE, VIT, Vellore.Operating Steps: Mov eData Between Memory 
+and Processor
+•Programs reside in memory .
+•Execution starts when PC is set to point to first instruction . 
+•Contents of PC are transferred to MAR and a Read control signal is sent to 
+memory . 
+•First instruction is read out of memory and loaded into MDR . 
+•Next, contents of MDR are transferred to IR . 
+•At this point, instruction is ready to be decoded and executed .
+•If instruction involves an operation to be performed by ALU , it is necessary 
+to obtain required operands . 
+•If an operand resides in memory (or in a general -purpose register ), it has to 
+be fetched by sending its address to MAR and initiating a Read cycle . 
+Dr.S.Meenatchi, SCORE, VIT, Vellore.Operating Steps: Move Data Between Memory 
+and Processor
+•When operand has been read from memory into MDR , it is transferred from 
+MDR to ALU . 
+•After one or more operands are fetched in this way, ALU can perform 
+desired operation. 
+•If result is to be stored in memory , then result is sent to MDR . 
+•Address of the location where result is to be stored is sent to the MAR , and 
+a Write cycle is initiated . 
+•At some point during the execution of the current instruction , the contents 
+of the PC are incremented so that the PC points to the next instruction to be 
+executed. 
+•Thus, as soon as execution of current instruction is completed, a new 
+instruction fetch may be started.Dr.S.Meenatchi, SCORE, VIT, Vellore.Move Data Between Processor and I/O devices
+•Computer accepts data from input devices and sends data to output 
+devices . 
+•Thus, some machine instructions with the ability to handle I/O 
+transfers are provided.
+Dr.S.Meenatchi, SCORE, VIT, Vellore.Interrupt Processing 
+•Interrupt is a request from an I/O device for service by the processor. 
+•If some device requires urgent service then it raises an interrupt signal . 
+•In order to deal with the situation immediately, normal execution of current 
+program must be interrupted . 
+•Processor provides the requested service by executing an appropriate interrupt -
+service routine . 
+•This diversions may alter the internal state of the processor .
+•Processor state must be saved in memory locations before servicing the interrupt . 
+•Normally, contents of PC, general registers , and some control inform ation are 
+stored in memory . 
+•When interrupt -service routine is completed , state of processor is restored so that 
+interrupted program may continue.Dr.S.Meenatchi, SCORE, VIT, Vellore.

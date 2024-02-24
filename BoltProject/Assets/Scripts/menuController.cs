@@ -16,6 +16,7 @@ public class menuController : MonoBehaviour
     [SerializeField]private GameObject sixB;
     [SerializeField]private GameObject sevenB;
     [SerializeField]private GameObject eightB;
+    [SerializeField]private GameObject iqb;
     [SerializeField]private GameObject mathB;
     [SerializeField]private GameObject scienceB;
 
@@ -30,6 +31,7 @@ public class menuController : MonoBehaviour
         eightB.SetActive(false);
         mathB.SetActive(false);
         scienceB.SetActive(false);
+        iqb.SetActive(false);
 
         DontDestroyOnLoad(music);
     }
@@ -47,20 +49,28 @@ public class menuController : MonoBehaviour
         sixB.SetActive(true);
         sevenB.SetActive(true);
         eightB.SetActive(true);
+        iqb.SetActive(true);
     }
 
     public void onLevel(int level) {
         selectedLevel = level;
 
+        if(level == 0) {
+            gameManager.gameMode = "iquiz";
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        }
+
         sixB.SetActive(false);
         sevenB.SetActive(false);
         eightB.SetActive(false);
+        iqb.SetActive(false);
 
         mathB.SetActive(true);
         scienceB.SetActive(true);
     }
 
     public void onSubject(int sub) {
+
         if(sub == 0) {
             selectedSub = "math";
         } else {

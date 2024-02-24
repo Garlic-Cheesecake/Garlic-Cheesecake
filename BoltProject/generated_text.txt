@@ -1,0 +1,10 @@
+1. What does a program consist of?
+2. What is the function of a processor in the execution of a program?
+3. What happens to the contents of a register RO when an Add operation is performed?
+4. How is memory access operation and ALU operation performed in many modern computers?
+5. What is the function of the Instruction Register (IR)?
+6. What role does the Program Counter (PC) play in the execution of a program?
+7. What is the function of the Memory Address Register (MAR)?
+8. What steps are involved in moving data between memory and processor?
+9. How does a computer interact with input and output devices?
+10. What is an interrupt and how does the processor handle it?

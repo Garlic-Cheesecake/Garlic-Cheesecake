@@ -75,10 +75,10 @@ public class gameManager : MonoBehaviour
         }
 
         else {
-            isRoundOver = false;
             timer = 5;
             tilegen.resetTiles();
             tilegen.callTileGeneration();
+            isRoundOver = false;
             StartCoroutine(tickTimer());
         }
     }

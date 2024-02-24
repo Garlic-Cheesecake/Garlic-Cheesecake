@@ -45,7 +45,7 @@ public class tile : MonoBehaviour
         if(Input.GetKey(pressKey) && tilegen.getCount() < tilegen.getMaxCount() && !tilegen.getInputFlag()) {
             isSelected = true;
             greenBG.SetActive(true);
-            Debug.Log(tilegen.getCount());
+            // Debug.Log(tilegen.getCount());
             tilegen.selectedTiles[tilegen.getCount()] = isCorrect;
             tilegen.upCount();
         }

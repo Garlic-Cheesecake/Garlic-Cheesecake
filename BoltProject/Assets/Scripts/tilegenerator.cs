@@ -28,12 +28,14 @@ public class tilegenerator : MonoBehaviour
     
     string filePath;
 
-
-
     // Start is called before the first frame update
     void Start()
     {   
         filePath = "Assets/Files/" + gameManager.gameMode + ".txt";
+
+        if(gameManager.gameMode == "iquiz") {
+            filePath = "iquiz.txt";
+        }
 
         // Debug.Log(gameManager.gameMode);
 
@@ -116,8 +118,11 @@ public class tilegenerator : MonoBehaviour
 
         while((line = reader.ReadLine()) != null) {
             questionTextList[k] = line;
-            questionType[k] = reader.ReadLine()[0] - 48;
-            Debug.Log(questionType[k]);
+            if(gameManager.gameMode == "iquiz") {
+                questionType[k] = 1;
+            }
+            else questionType[k] = reader.ReadLine()[0] - 48;
+            //Debug.Log(questionType[k]);
 
             int i = 0;
             while(i < 4) {
@@ -125,6 +130,7 @@ public class tilegenerator : MonoBehaviour
                 i++;
             }
 
+            reader.ReadLine();
             k++;
         }
 
@@ -137,12 +143,19 @@ public class tilegenerator : MonoBehaviour
         int i = 0;
         while(i < 4) {
             // Debug.Log(b[i]);
-
+            int t = gm.getRound();
+            if(gameManager.gameMode == "iquiz") {
+                t = 1;
+            }
+        
             for(int j = 0; j < questionType[gm.getRound()]; j++) {
                 int temp = 0;
                 for(int k = 0; k < 4; k++) {
                     if(b[k] == temp++) {
-                        tiles[b[k]].GetComponent<tile>().setCorrect(true);
+                        tiles[k].GetComponent<tile>().setCorrect(true);
+                    }
+                    else {
+                        tiles[k].GetComponent<tile>().setCorrect(false);
                     }
                 }
             }
